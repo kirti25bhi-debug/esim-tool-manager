@@ -1,0 +1,317 @@
+{
+  "schema_version": "1.0",
+  "tools": [
+    {
+      "id": "ngspice",
+      "name": "Ngspice Circuit Simulator",
+      "category": "Simulation",
+      "description": "General purpose mixed-level / mixed-signal circuit simulator engine for eSim.",
+      "binary_name": {
+        "linux": "ngspice",
+        "darwin": "ngspice",
+        "windows": "ngspice.exe",
+        "default": "ngspice"
+      },
+      "version_command": {
+        "default": ["ngspice", "-v"]
+      },
+      "version_regex": "(?:ngspice-|Ngspice\\s+version\\s+|ngspice\\s+)(\\d+(?:\\.\\d+)*)",
+      "min_version": "38",
+      "max_version": null,
+      "recommended_version": "43",
+      "dependencies": ["libngspice", "gcc"],
+      "env_vars": {
+        "NGSPICE_PATH": "{executable_path}",
+        "SPICE_LIB_DIR": "{executable_dir}/../share/ngspice"
+      },
+      "platform_packages": {
+        "linux": {
+          "package_name": "ngspice",
+          "package_manager": "apt",
+          "install_args": ["-y", "install", "ngspice", "libngspice0"],
+          "download_url": "https://sourceforge.net/projects/ngspice/files/ng-spice-rework/43/ngspice-43.tar.gz"
+        },
+        "darwin": {
+          "package_name": "ngspice",
+          "package_manager": "brew",
+          "install_args": ["install", "ngspice"],
+          "download_url": "https://sourceforge.net/projects/ngspice/files/ng-spice-rework/43/ngspice-43.tar.gz"
+        },
+        "windows": {
+          "package_name": "Ngspice.Ngspice",
+          "package_manager": "winget",
+          "install_args": ["install", "--id", "Ngspice.Ngspice", "-e"],
+          "download_url": "https://sourceforge.net/projects/ngspice/files/ng-spice-rework/43/ngspice-43_64.zip",
+          "archive_type": "zip",
+          "binary_relative_path": "Spice64/bin/ngspice.exe"
+        }
+      },
+      "verification_command": ["ngspice", "--version"],
+      "is_required": true,
+      "doc_url": "https://ngspice.sourceforge.io/"
+    },
+    {
+      "id": "kicad",
+      "name": "KiCad EDA Suite",
+      "category": "Schematic & PCB",
+      "description": "Schematic editor (Eeschema) and PCB layout engine integrated into eSim workflow.",
+      "binary_name": {
+        "linux": "kicad-cli",
+        "darwin": "kicad-cli",
+        "windows": "kicad-cli.exe",
+        "default": "kicad-cli"
+      },
+      "version_command": {
+        "default": ["kicad-cli", "version"],
+        "darwin": ["/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli", "version"]
+      },
+      "version_regex": "(\\d+\\.\\d+(?:\\.\\d+)?)",
+      "min_version": "6.0.0",
+      "max_version": "9.0.0",
+      "recommended_version": "7.0.11",
+      "dependencies": [],
+      "env_vars": {
+        "KICAD_PATH": "{executable_path}",
+        "KICAD_CLI_PATH": "{executable_path}"
+      },
+      "platform_packages": {
+        "linux": {
+          "package_name": "kicad",
+          "package_manager": "apt",
+          "install_args": ["-y", "install", "kicad"],
+          "download_url": "https://www.kicad.org/download/linux/"
+        },
+        "darwin": {
+          "package_name": "kicad",
+          "package_manager": "brew",
+          "install_args": ["install", "--cask", "kicad"],
+          "download_url": "https://www.kicad.org/download/macos/"
+        },
+        "windows": {
+          "package_name": "KiCad.KiCad",
+          "package_manager": "winget",
+          "install_args": ["install", "--id", "KiCad.KiCad", "-e"],
+          "download_url": "https://www.kicad.org/download/windows/"
+        }
+      },
+      "verification_command": ["kicad-cli", "--help"],
+      "is_required": true,
+      "doc_url": "https://www.kicad.org/"
+    },
+    {
+      "id": "ghdl",
+      "name": "GHDL VHDL Simulator",
+      "category": "Digital Design",
+      "description": "VHDL analyzer, compiler, and simulator for digital blocks and mixed-signal co-simulation.",
+      "binary_name": {
+        "linux": "ghdl",
+        "darwin": "ghdl",
+        "windows": "ghdl.exe",
+        "default": "ghdl"
+      },
+      "version_command": {
+        "default": ["ghdl", "--version"]
+      },
+      "version_regex": "GHDL\\s+(\\d+(?:\\.\\d+)*(?:-[a-zA-Z0-9]+)?)",
+      "min_version": "1.0.0",
+      "max_version": null,
+      "recommended_version": "3.0.0",
+      "dependencies": ["gcc"],
+      "env_vars": {
+        "GHDL_PATH": "{executable_path}"
+      },
+      "platform_packages": {
+        "linux": {
+          "package_name": "ghdl",
+          "package_manager": "apt",
+          "install_args": ["-y", "install", "ghdl"],
+          "download_url": "https://github.com/ghdl/ghdl/releases"
+        },
+        "darwin": {
+          "package_name": "ghdl",
+          "package_manager": "brew",
+          "install_args": ["install", "ghdl"],
+          "download_url": "https://github.com/ghdl/ghdl/releases"
+        },
+        "windows": {
+          "package_name": "GHDL.GHDL",
+          "package_manager": "winget",
+          "install_args": ["install", "--id", "GHDL.GHDL", "-e"],
+          "download_url": "https://github.com/ghdl/ghdl/releases"
+        }
+      },
+      "verification_command": ["ghdl", "--version"],
+      "is_required": false,
+      "doc_url": "https://ghdl.github.io/ghdl/"
+    },
+    {
+      "id": "gtkwave",
+      "name": "GTKWave Waveform Viewer",
+      "category": "Digital Design",
+      "description": "Fully featured wave viewer for viewing VCD/FST output from digital and mixed-signal simulations.",
+      "binary_name": {
+        "linux": "gtkwave",
+        "darwin": "gtkwave",
+        "windows": "gtkwave.exe",
+        "default": "gtkwave"
+      },
+      "version_command": {
+        "default": ["gtkwave", "--version"]
+      },
+      "version_regex": "GTKWave\\s+Analyzer\\s+v(\\d+(?:\\.\\d+)*)",
+      "min_version": "3.3.100",
+      "max_version": null,
+      "recommended_version": "3.3.118",
+      "dependencies": [],
+      "env_vars": {
+        "GTKWAVE_PATH": "{executable_path}"
+      },
+      "platform_packages": {
+        "linux": {
+          "package_name": "gtkwave",
+          "package_manager": "apt",
+          "install_args": ["-y", "install", "gtkwave"],
+          "download_url": "http://gtkwave.sourceforge.net/"
+        },
+        "darwin": {
+          "package_name": "gtkwave",
+          "package_manager": "brew",
+          "install_args": ["install", "gtkwave"],
+          "download_url": "http://gtkwave.sourceforge.net/"
+        },
+        "windows": {
+          "package_name": "gtkwave",
+          "package_manager": "choco",
+          "install_args": ["install", "gtkwave", "-y"],
+          "download_url": "https://sourceforge.net/projects/gtkwave/files/"
+        }
+      },
+      "verification_command": ["gtkwave", "--help"],
+      "is_required": false,
+      "doc_url": "https://gtkwave.sourceforge.net/"
+    },
+    {
+      "id": "verilator",
+      "name": "Verilator Verilog Simulator",
+      "category": "Digital Design",
+      "description": "High-performance Verilog HDL compiler and simulator used for eSim digital sub-circuits.",
+      "binary_name": {
+        "linux": "verilator",
+        "darwin": "verilator",
+        "windows": "verilator.exe",
+        "default": "verilator"
+      },
+      "version_command": {
+        "default": ["verilator", "--version"]
+      },
+      "version_regex": "Verilator\\s+(\\d+(?:\\.\\d+)*)",
+      "min_version": "4.100",
+      "max_version": null,
+      "recommended_version": "5.020",
+      "dependencies": ["gcc", "perl"],
+      "env_vars": {
+        "VERILATOR_ROOT": "{executable_dir}/..",
+        "VERILATOR_PATH": "{executable_path}"
+      },
+      "platform_packages": {
+        "linux": {
+          "package_name": "verilator",
+          "package_manager": "apt",
+          "install_args": ["-y", "install", "verilator"],
+          "download_url": "https://www.veripool.org/verilator/"
+        },
+        "darwin": {
+          "package_name": "verilator",
+          "package_manager": "brew",
+          "install_args": ["install", "verilator"],
+          "download_url": "https://www.veripool.org/verilator/"
+        },
+        "windows": {
+          "package_name": "verilator",
+          "package_manager": "choco",
+          "install_args": ["install", "verilator", "-y"],
+          "download_url": "https://www.veripool.org/verilator/"
+        }
+      },
+      "verification_command": ["verilator", "--version"],
+      "is_required": false,
+      "doc_url": "https://verilator.org/"
+    },
+    {
+      "id": "openmodelica",
+      "name": "OpenModelica Modeling Engine",
+      "category": "Multi-Domain Modeling",
+      "description": "Equation-based object-oriented multi-domain modeling environment integrated with eSim.",
+      "binary_name": {
+        "linux": "omc",
+        "darwin": "omc",
+        "windows": "omc.exe",
+        "default": "omc"
+      },
+      "version_command": {
+        "default": ["omc", "--version"]
+      },
+      "version_regex": "OpenModelica\\s+(\\d+(?:\\.\\d+)*)",
+      "min_version": "1.18.0",
+      "max_version": null,
+      "recommended_version": "1.22.0",
+      "dependencies": [],
+      "env_vars": {
+        "OPENMODELICAHOME": "{executable_dir}/.."
+      },
+      "platform_packages": {
+        "linux": {
+          "package_name": "openmodelica",
+          "package_manager": "apt",
+          "install_args": ["-y", "install", "openmodelica"],
+          "download_url": "https://openmodelica.org/download/"
+        },
+        "darwin": {
+          "package_name": "openmodelica",
+          "package_manager": "brew",
+          "install_args": ["install", "openmodelica/openmodelica/openmodelica"],
+          "download_url": "https://openmodelica.org/download/"
+        },
+        "windows": {
+          "package_name": "OpenModelica.OpenModelica",
+          "package_manager": "winget",
+          "install_args": ["install", "--id", "OpenModelica.OpenModelica", "-e"],
+          "download_url": "https://openmodelica.org/download/"
+        }
+      },
+      "verification_command": ["omc", "--version"],
+      "is_required": false,
+      "doc_url": "https://openmodelica.org/"
+    }
+  ],
+  "python_dependencies": [
+    {
+      "id": "numpy",
+      "name": "NumPy",
+      "category": "Python Library",
+      "min_version": "1.20.0",
+      "description": "Core numerical computing array library used in simulation data processing."
+    },
+    {
+      "id": "scipy",
+      "name": "SciPy",
+      "category": "Python Library",
+      "min_version": "1.7.0",
+      "description": "Scientific algorithms and signal processing for eSim transient analysis."
+    },
+    {
+      "id": "matplotlib",
+      "name": "Matplotlib",
+      "category": "Python Library",
+      "min_version": "3.4.0",
+      "description": "Plotting library for generating waveforms and frequency response curves."
+    },
+    {
+      "id": "sympy",
+      "name": "SymPy",
+      "category": "Python Library",
+      "min_version": "1.8.0",
+      "description": "Symbolic mathematics engine for transfer function and filter design in eSim."
+    }
+  ]
+}

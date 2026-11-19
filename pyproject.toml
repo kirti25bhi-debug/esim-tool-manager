@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "esim-tool-manager"
+version = "1.0.0"
+authors = [
+  { name="eSim Development Team", email="esim-dev@fossee.in" },
+]
+description = "Automated Tool Manager for eSim external tools and dependencies"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.scripts]
+esim-tools = "esim_tool_manager.cli:main"
