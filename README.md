@@ -11,24 +11,24 @@ This manager automates the **installation**, **configuration**, **update**, and 
 
 ---
 
-## 🌟 Key Features
+# Key Features
 
-* **📦 Cross-Platform Tool Installation:** Automatically downloads and installs required external tools across Linux (`apt`/`dnf`/`pacman`), macOS (`brew` formula & cask), and Windows (`winget`/`choco`).
-* **🩺 eSim Doctor (Diagnostic Dependency Checker):** Multi-layer diagnostic health checker inspired by `flutter doctor` that inspects the OS, package managers, EDA binaries, and Python libraries, providing actionable remediation advice.
-* **🔄 Update & Upgrade System:** Checks remote package feeds and GitHub releases for upstream updates and safely upgrades tools with minimal intervention.
-* **⚙️ Automated Configuration & Path Management:** Automatically locates installed binaries and generates:
+*  Cross-Platform Tool Installation:** Automatically downloads and installs required external tools across Linux (`apt`/`dnf`/`pacman`), macOS (`brew` formula & cask), and Windows (`winget`/`choco`).
+*  eSim Doctor (Diagnostic Dependency Checker):** Multi-layer diagnostic health checker inspired by `flutter doctor` that inspects the OS, package managers, EDA binaries, and Python libraries, providing actionable remediation advice.
+* Update & Upgrade System:** Checks remote package feeds and GitHub releases for upstream updates and safely upgrades tools with minimal intervention.
+* Automated Configuration & Path Management:** Automatically locates installed binaries and generates:
   * `esim_config.json`: Structured configuration file for eSim.
   * `esim_env.sh`: One-line POSIX shell script exporting environment variables and updating `PATH`.
   * `esim_env.bat`: Batch script for Windows Command Prompt.
   * `.env`: Environment variable file for developers.
-* **🖥️ Dual User Interface (CLI + GUI):**
+* Dual User Interface (CLI + GUI):**
   * **CLI (`esim-tools`):** Fast, color-coded terminal interface with rich tables.
   * **GUI:** Modern, multi-threaded desktop interface built with pure Python `tkinter` (zero external dependencies required!).
-* **🧩 Manifest-Driven Architecture:** All tools, version regexes, and packaging commands are defined in `tools_manifest.json`. Adding new tools or PDKs requires zero code modifications.
+* Manifest-Driven Architecture:** All tools, version regexes, and packaging commands are defined in `tools_manifest.json`. Adding new tools or PDKs requires zero code modifications.
 
 ---
 
-## 📁 Project Directory Structure
+# Project Directory Structure
 
 ```text
 esim-tool-manager/
@@ -71,7 +71,7 @@ esim-tool-manager/
 
 ---
 
-## 🚀 Instructions for Execution
+#Instructions for Execution
 
 ### Prerequisites
 * **Python 3.8+** (Works on Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13+)
@@ -79,7 +79,7 @@ esim-tool-manager/
 
 ---
 
-### Step 1: Run the Automated Screening Demo (Recommended)
+#Step 1: Run the Automated Screening Demo (Recommended)
 To see an end-to-end demonstration of all 5 requirements in seconds:
 
 ```bash
@@ -95,7 +95,7 @@ This runs a guided walkthrough:
 
 ---
 
-### Step 2: Run the Unit Test Suite
+#Step 2: Run the Unit Test Suite
 To verify code correctness, version comparison logic, and platform abstractions:
 
 ```bash
@@ -113,23 +113,23 @@ OK
 
 ---
 
-### Step 3: Using the Command Line Interface (CLI)
+#Step 3: Using the Command Line Interface (CLI)
 
 You can invoke the CLI directly using `python3 -m esim_tool_manager.cli` (or install it via `pip install -e .` to enable the `esim-tools` shortcut command).
 
-#### 1. Diagnostic Health Check ("eSim Doctor")
+#1. Diagnostic Health Check ("eSim Doctor")
 Audits your operating system, installed EDA tools, and Python dependencies:
 ```bash
 python3 -m esim_tool_manager.cli doctor
 ```
 
-#### 2. View Catalog & Installed Status
+#2. View Catalog & Installed Status
 Lists all registered tools, their categories, installed versions, and compatibility:
 ```bash
 python3 -m esim_tool_manager.cli list
 ```
 
-#### 3. Install Tools
+#3. Install Tools
 Installs a specific tool (e.g. `ngspice`, `kicad`, `ghdl`, `verilator`) or all missing tools:
 ```bash
 # Install a single tool
@@ -145,7 +145,7 @@ python3 -m esim_tool_manager.cli --dry-run install kicad
 python3 -m esim_tool_manager.cli --platform linux --dry-run install ngspice
 ```
 
-#### 4. Update & Upgrade Tools
+# 4. Update & Upgrade Tools
 Checks for newer versions and upgrades them:
 ```bash
 # Check and update a specific tool
@@ -155,7 +155,7 @@ python3 -m esim_tool_manager.cli update ngspice
 python3 -m esim_tool_manager.cli update all
 ```
 
-#### 5. Configuration & Environment Management
+# 5. Configuration & Environment Management
 Generates and inspects eSim configuration files and shell environment wrappers:
 ```bash
 # Generate esim_config.json, esim_env.sh, and esim_env.bat
@@ -169,18 +169,18 @@ python3 -m esim_tool_manager.cli config set CUSTOM_MODEL_PATH /opt/models/sky130
 ```
 
 To activate the generated environment in your terminal:
-* **Linux / macOS:**
+* Linux / macOS:**
   ```bash
   source ~/.esim/esim_env.sh
   ```
-* **Windows (CMD):**
+* Windows (CMD):**
   ```cmd
   call %USERPROFILE%\.esim\esim_env.bat
   ```
 
 ---
 
-### Step 4: Launching the Graphical User Interface (GUI)
+# Step 4: Launching the Graphical User Interface (GUI)
 
 To launch the desktop GUI:
 
@@ -188,7 +188,7 @@ To launch the desktop GUI:
 python3 -m esim_tool_manager.cli gui
 ```
 
-#### GUI Capabilities:
+#GUI Capabilities:
 * **Tools & Status Tab:** Browse the full EDA catalog with status badges, and trigger one-click "Install All Missing" or "Upgrade Outdated".
 * **eSim Doctor Tab:** Runs diagnostics asynchronously in a background thread (no UI freezing) and displays remediation steps.
 * **Configuration Tab:** Inspects active environment paths and exports shell/batch wrappers.
@@ -196,7 +196,7 @@ python3 -m esim_tool_manager.cli gui
 
 ---
 
-## ⚙️ Testing Flags & Simulation Options
+#Testing Flags & Simulation Options
 
 For automated testing or evaluation in environments without root/admin permissions:
 * `--mock`: Simulates successful installations and updates without modifying host system packages.
@@ -211,7 +211,7 @@ python3 -m esim_tool_manager.cli --mock --platform windows install kicad
 
 ---
 
-## 📖 Deliverables Summary
+#Deliverables Summary
 
 1. **Design Document:** Full architectural design specification in [`DESIGN_DOCUMENT.md`](DESIGN_DOCUMENT.md).
 2. **Presentation Deck & Video Script:** 5-10 minute presentation deck & script in [`PRESENTATION.md`](PRESENTATION.md).
